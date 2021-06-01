@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Калькулятор</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+</head>
+<style>
+   .history {
+   text-align: right;
+   }
+   .container {
+      margin-top: 50px;
+      margin-right: 350px;
+      float: right;
+      display: grid;
+      grid-template-columns: 2fr 2fr 2fr 2fr;
+      background: black;
+      padding: 20px;
+      max-width: 500px;
+   }
+   .container2 {
+      title: History;
+      margin-top: 50px;
+      margin-left: 350px;
+      float: left;
+      background: black;
+      padding: 10px;
+      text-align: right;
+      height: 580px;
+   }
+   .item {
+      align-items: center;
+      height: 90px;
+      font-size: 30px;
+      cursor: pointer;
+      font-weight: bold;
+   }
+   form {
+      max-width: 100%;
+   }
+   input {
+      background-color: white;
+      width: 100%;
+      font-size: 50px;
+      height: 90px;
+      outline: none;
+      text-align: right;
+   }
+   .input {
+      grid-column: 1/-1;
+      background-color: white;
+      width: 100%;
+      font-size: 50px;
+      height: 90px;
+      outline: none;
+      text-align: right;
+   }
+</style>
+<body>
+<div class="container">
+    <div class="item input">
+        <form name="form"><input type="text" name="textview" readonly></form>
+    </div>
+    <div class="item clean; btn btn-outline-light" onclick="clean()">C</div>
+    <div class="item back; btn btn-outline-light" onclick="back()">&larr;</div>
+    <div class="item (; btn btn-outline-light" onclick="insert('(')">(</div>
+    <div class="item ); btn btn-outline-light" onclick="insert(')')">)</div>
+    <div class="item 7; btn btn-outline-light" onclick="insert('7')">7</div>
+    <div class="item 8; btn btn-outline-light" onclick="insert('8')">8</div>
+    <div class="item 9; btn btn-outline-light" onclick="insert('9')">9</div>
+    <div class="item +; btn btn-outline-light" onclick="insert('+')">+</div>
+    <div class="item 4; btn btn-outline-light" onclick="insert('4')">4</div>
+    <div class="item 5; btn btn-outline-light" onclick="insert('5')">5</div>
+    <div class="item 3; btn btn-outline-light" onclick="insert('6')">6</div>
+    <div class="item -; btn btn-outline-light" onclick="insert('-')">-</div>
+    <div class="item 1; btn btn-outline-light" onclick="insert('1')">1</div>
+    <div class="item 2; btn btn-outline-light" onclick="insert('2')">2</div>
+    <div class="item 3; btn btn-outline-light" onclick="insert('3')">3</div>
+    <div class="item *; btn btn-outline-light" onclick="insert('*')">*</div>
+    <div class="item zero; btn btn-outline-light" onclick="insert('0')">0</div>
+    <div class="item .; btn btn-outline-light" onclick="insert('.')">.</div>
+    <div class="item equal; btn btn-outline-light" onclick="equal()">=</div>
+    <div class="item /; btn btn-outline-light" onclick="insert('/')">/</div>
+</div>
+<div class="container2">
+    <div align="right" style="height=100px" class="item history">
+        <p align="center" style="color:white">
+        Hystory</p>
+        <form name="history"><textarea style="height:500px;text-align:right" name="textarea" readonly></textarea></form>
+    </div>
+</div>
+<script>
+ function insert(sign)
+ {
+     document.form.textview.value = document.form.textview.value + sign;
+ }
+ function clean()
+ {
+     document.form.textview.value = "";
+ }
+ function back()
+ {
+     var exp = document.form.textview.value;
+     document.form.textview.value = exp.substring(0,exp.length-1);
+ }
+ function equal()
+ {
+     var comp = document.form.textview.value;
+     if(comp)
+     {
+         document.history.textarea.value = document.history.textarea.value + document.form.textview.value+'='+eval(comp)+"\n"+"------------------------"+"\n";
+         document.form.textview.value = eval(comp);
+     }
+ }
+</script>
+</body>
+</html>
